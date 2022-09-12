@@ -26,7 +26,7 @@ class httpScape:
             try:
                 response = requests.get('https://google.com/', timeout=5, proxies=proxy)
                 if response.status_code == 200:
-                    self.proxies.append(proxy)
+                    self.proxies.append(ip)
                     self._COUNTER += 1
                     if self._VERBOSE:
                         print(f'[\u2705] {ip}')
