@@ -1,4 +1,4 @@
-import requests, os, random, argparse
+import requests, os, random, argparse, time
 from threading import Thread
 
 class httpScape:
@@ -52,14 +52,17 @@ class httpScape:
         self.scrape()
         print(f'[*] {len(self.pList)} Proxies found..\n')
         print(f'[*] Checking connectivity of {self._MAX_PROXIES} proxies..')
+        start = time.time()
         for index in range(numThreads):
             t = Thread(target=self.check, daemon=True)
             self.threads.append(t)
             t.start()
         for index, thread in enumerate(self.threads):
             t.join()
+        end = time.time()
+        laps = end - start
 
-        print(f'[*] Saving proxies to {output}')  
+        print(f'[*] Saving proxies to {output} | Time: {int(laps)} seconds')  
         with open(f'{cwd}/{output}', 'w') as file:
             file.write('\n'.join(self.proxies))
 
