@@ -13,8 +13,7 @@ class ProxyScraper:
 
     def scrape(self):
         request = requests.get('https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all').text
-        for proxy in request.split():
-            self.pList.append({'http': f'http://{proxy}', 'https': f'http://{proxy}'})
+        [self.pList.append({'http': f'http://{proxy}', 'https': f'http://{proxy}'}) for proxy in request.split()]
 
     def validate_proxy(self, proxy):
         try:
@@ -32,8 +31,7 @@ class ProxyScraper:
         num_threads = thready  # Number of threads for validation
         proxy_queue = Queue()
 
-        for proxy in self.pList:
-            proxy_queue.put(proxy)
+        [proxy_queue.put(proxy) for proxy in self.pList]
 
         def worker():
             while not proxy_queue.empty() and not self.exit_event.is_set():
@@ -51,8 +49,7 @@ class ProxyScraper:
             self.exit_event.wait(timeout=1)
 
         self.exit_event.set()
-        for t in threads:
-            t.join()
+        [t.join() for t in threads]
 
     def get_valid_proxies(self):
         return self.valid_proxies[:self.max_valid_proxies]
