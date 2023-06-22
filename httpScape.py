@@ -6,7 +6,6 @@ import argparse
 class ProxyScraper:
     def __init__(self, max_valid_proxies):
         self.pList = []
-        self.threads = 0
         self.max_valid_proxies = max_valid_proxies
         self.valid_proxies = []
         self.proxy_lock = threading.Lock()
