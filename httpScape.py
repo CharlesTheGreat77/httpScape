@@ -57,7 +57,7 @@ class ProxyScraper:
 def main():
         parser = argparse.ArgumentParser(description='Proxy Scraper')
         parser.add_argument('--protocol', '-p', type=str, default='http', help='Protocol to scrape [default: http]')
-        parser.add_argument('--outfile', '-o', help='Output file name')
+        parser.add_argument('--outfile', '-o', type=str, default='proxies.txt', help='Output file name')
         parser.add_argument('--max-valid', '-m', type=int, default=10, help='Maximum number of valid proxies')
         parser.add_argument('--threads', '-t', type=int, default=5, help='number of threads')
         args = parser.parse_args()
