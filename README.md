@@ -1,5 +1,5 @@
 # httpScape
-Simple multithreaded HTTP Proxy Scraper/Checker
+Simple multithreaded Proxy Scraper/Validator 
 
 ```
      \_______/
