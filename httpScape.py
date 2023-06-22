@@ -58,7 +58,7 @@ def main():
         parser = argparse.ArgumentParser(description='Proxy Scraper')
         parser.add_argument('--outfile', '-o', help='Output file name')
         parser.add_argument('--max-valid', '-m', type=int, default=10, help='Maximum number of valid proxies')
-        parser.add_argument('--threads', '-t', type=int, default=5, help='number of threads')
+        parser.add_argument('--threads', '-t', type=int, default=5, help='Number of threads')
         args = parser.parse_args()
         thready = args.threads
 
