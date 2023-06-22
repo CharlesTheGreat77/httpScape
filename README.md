@@ -15,7 +15,7 @@ Simple multithreaded HTTP(S) Proxy Scraper/Validator
 ```
 # Usage
 ```
-usage: proxies.py [-h] [--protocol PROTOCOL]
+usage: httpScape.py [-h] [--protocol PROTOCOL]
                   [--outfile OUTFILE] [--max-valid MAX_VALID]
                   [--threads THREADS]
 
