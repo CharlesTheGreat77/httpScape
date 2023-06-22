@@ -15,24 +15,19 @@ Simple multithreaded HTTP Proxy Scraper/Checker
 ```
 # Usage
 ```
-$ python3 httpScape.py --help
-usage: httpScrape.py [-h] [-m MAXIMUM]
-                     [-o OUTPUT]
-                     [-t THREADS] [-v]
-HTTP Proxy Scraper/Checker Framework
+usage: proxies.py [-h] [--outfile OUTFILE]
+                  [--max-valid MAX_VALID] [--threads THREADS]
+
+Proxy Scraper
+
 options:
-  -h, --help           show this help
-                       message and exit
-  -m MAXIMUM, --maximum MAXIMUM
-                       specify max amount
-                       of proxies
-  -o OUTPUT, --output OUTPUT
-                       specify output file
-                       name [default:proxie
-                       s.txt]
-  -t THREADS, --threads THREADS
-                       specify amount of
-                       threads [default:5]
+  -h, --help            show this help message and exit
+  --outfile OUTFILE, -o OUTFILE
+                        Output file name
+  --max-valid MAX_VALID, -m MAX_VALID
+                        Maximum number of valid proxies
+  --threads THREADS, -t THREADS
+                        number of threads
 ```
 
 # Prerequisites
