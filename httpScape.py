@@ -28,7 +28,6 @@ class ProxyScraper:
             pass
 
     def queue_proxies(self, thready):
-        num_threads = thready  # Number of threads for validation
         proxy_queue = Queue()
 
         [proxy_queue.put(proxy) for proxy in self.pList]
@@ -40,7 +39,7 @@ class ProxyScraper:
                 proxy_queue.task_done()
 
         threads = []
-        for _ in range(num_threads):
+        for _ in range(thready):
             t = threading.Thread(target=worker)
             t.start()
             threads.append(t)
