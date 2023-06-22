@@ -15,13 +15,16 @@ Simple multithreaded Proxy Scraper/Validator
 ```
 # Usage
 ```
-usage: proxies.py [-h] [--outfile OUTFILE]
-                  [--max-valid MAX_VALID] [--threads THREADS]
+usage: proxies.py [-h] [--protocol PROTOCOL]
+                  [--outfile OUTFILE] [--max-valid MAX_VALID]
+                  [--threads THREADS]
 
 Proxy Scraper
 
 options:
   -h, --help            show this help message and exit
+  --protocol PROTOCOL, -p PROTOCOL
+                        Protocol to scrape [default: http]
   --outfile OUTFILE, -o OUTFILE
                         Output file name
   --max-valid MAX_VALID, -m MAX_VALID
