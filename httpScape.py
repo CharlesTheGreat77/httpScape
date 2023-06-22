@@ -11,8 +11,8 @@ class ProxyScraper:
         self.proxy_lock = threading.Lock()
         self.exit_event = threading.Event()
 
-    def scrape(self):
-        request = requests.get('https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all').text
+    def scrape(self, protocol):
+        request = requests.get(f'https://api.proxyscrape.com/v2/?request=getproxies&protocol={protocol}&timeout=10000&country=all&ssl=all&anonymity=all').text
         [self.pList.append({'http': f'http://{proxy}', 'https': f'http://{proxy}'}) for proxy in request.split()]
 
     def validate_proxy(self, proxy):
@@ -23,7 +23,7 @@ class ProxyScraper:
                     self.valid_proxies.append(proxy)
                     if len(self.valid_proxies) >= self.max_valid_proxies:
                         self.exit_event.set()
-                print(f"Valid proxy: {proxy['http']}")
+                print(f"\u2705 {proxy['http']}")
         except (requests.RequestException, ValueError):
             pass
 
@@ -56,14 +56,16 @@ class ProxyScraper:
 
 def main():
         parser = argparse.ArgumentParser(description='Proxy Scraper')
+        parser.add_argument('--protocol', '-p', type=str, default='http', help='Protocol to scrape [default: http]')
         parser.add_argument('--outfile', '-o', help='Output file name')
         parser.add_argument('--max-valid', '-m', type=int, default=10, help='Maximum number of valid proxies')
-        parser.add_argument('--threads', '-t', type=int, default=5, help='Number of threads')
+        parser.add_argument('--threads', '-t', type=int, default=5, help='number of threads')
         args = parser.parse_args()
         thready = args.threads
+        protocol = args.protocol
 
         proxy_scraper = ProxyScraper(args.max_valid)
-        proxy_scraper.scrape()
+        proxy_scraper.scrape(protocol)
         proxy_scraper.queue_proxies(thready)
         valid_proxies = proxy_scraper.get_valid_proxies()
 
