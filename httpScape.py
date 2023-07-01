@@ -84,6 +84,6 @@ def main():
                     proxy = proxy.replace('http://','')
                     f.write(f"{proxy}\n")
 
-        print(f'[*] Time Lapse: {timer} seconds\n')
+        print(f'[*] Time Lapse: {int(timer)} seconds\n')
 
 main()
