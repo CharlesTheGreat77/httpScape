@@ -2,6 +2,7 @@ import requests
 import threading
 from queue import Queue
 import argparse
+import time
 
 class ProxyScraper:
     def __init__(self, max_valid_proxies):
@@ -62,11 +63,19 @@ def main():
         args = parser.parse_args()
         thready = args.threads
         protocol = args.protocol
+        
+        start = time.time()
 
         proxy_scraper = ProxyScraper(args.max_valid)
         proxy_scraper.scrape(protocol)
+        print(f'[*] {len(self.pList)} proxies scraped..\n')
+        print(f' -   Validating {args.max_valid} proxies..\n)
         proxy_scraper.queue_proxies(thready)
         valid_proxies = proxy_scraper.get_valid_proxies()
+        
+        # Time lapse
+        end = time.time()
+        timer = end - start
 
         if args.outfile:
             with open(args.outfile, 'w') as f:
@@ -74,5 +83,7 @@ def main():
                     proxy = proxy['http']
                     proxy = proxy.replace('http://','')
                     f.write(f"{proxy}\n")
+
+        print('[*] Time Lapse: {timer} seconds\n')
 
 main()
