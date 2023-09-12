@@ -68,8 +68,6 @@ def main():
 
         proxy_scraper = ProxyScraper(args.max_valid)
         proxy_scraper.scrape(protocol)
-        print(f'[*] {len(self.pList)} proxies scraped..\n')
-        print(f' -   Validating {args.max_valid} proxies..\n')
         proxy_scraper.queue_proxies(thready)
         valid_proxies = proxy_scraper.get_valid_proxies()
         
